@@ -79,7 +79,7 @@ public extension ViewHosting {
         guard let subject: Subject = {
             if let delegate = ext.delegate,
                let subject = try? Inspector
-                 .attribute(path: "fallbackDelegate|some|extension|testViewSubject",
+                 .attribute(path: "fallbackDelegate|some|application|testViewSubject",
                             value: delegate, type: Subject.self) {
                 return subject
             }
