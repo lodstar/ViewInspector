@@ -75,7 +75,7 @@ public extension ViewHosting {
     #if os(watchOS)
     private static func watchOS(host view: AnyView?, viewId: ViewId) throws {
         typealias Subject = CurrentValueSubject<[(String, AnyView)], Never>
-        let ext = WKExtension.shared()
+        let ext = WKApplication.shared()
         guard let subject: Subject = {
             if let delegate = ext.delegate,
                let subject = try? Inspector
@@ -290,7 +290,7 @@ internal extension ViewHosting {
     static func lookup<V>(_ view: V.Type) throws -> V.WKInterfaceObjectType
         where V: WKInterfaceObjectRepresentable {
             let name = Inspector.typeName(type: view)
-            guard let rootVC = WKExtension.shared().rootInterfaceController,
+            guard let rootVC = WKApplication.shared().rootInterfaceController,
                   let viewCache = try? Inspector.attribute(path: """
                   super|$__lazy_storage_$_hostingController|some|\
                   host|renderer|renderer|some|viewCache|map
